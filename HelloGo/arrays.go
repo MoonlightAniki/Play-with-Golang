@@ -10,7 +10,7 @@ func printArray(arr [5]int) {
 	}
 }
 
-func printArrayByPointer(arr *[5]int) {
+func printArray2(arr *[5]int) {
 	/*	(*arr)[0] = 100
 		for i, v := range *arr {
 			fmt.Println(i, v)
@@ -81,8 +81,8 @@ func main() {
 	// 调用 func f(arr [10]int) 会拷贝数组
 	// go语言中一般不直接使用数组，一般使用切片
 
-	printArrayByPointer(&arr1)
-	printArrayByPointer(&arr3)
+	printArray2(&arr1)
+	printArray2(&arr3)
 	fmt.Println("arr1 and arr3")
 	fmt.Println(arr1, arr3)
 }
