@@ -79,6 +79,21 @@ func sum2(numbers ...int) int {
 	return s
 }
 
+// 值传递
+//func swap(a, b int) {
+//	a, b = b, a
+//}
+
+// 使用指针交换两个数
+//func swap(a, b *int) {
+//	*a, *b = *b, *a
+//}
+
+// 使用多返回值实现交换两个整数
+func swap(a, b int) (int, int) {
+	return b, a
+}
+
 func main() {
 	//fmt.Println(eval(10, 2, "x"))
 	if res, err := eval(10, 2, "x"); err != nil {
@@ -100,4 +115,8 @@ func main() {
 	}, 3, 4))
 
 	fmt.Println(sum2(1, 2, 3, 4, 5))
+
+	a, b := 3, 4
+	a, b = swap(a, b)
+	fmt.Println(a, b)
 }
