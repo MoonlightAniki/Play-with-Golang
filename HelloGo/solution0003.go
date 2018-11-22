@@ -25,16 +25,16 @@ Explanation: The answer is "wke", with the length of 3.
  */
 func lengthOfLongestSubstring(s string) int {
 	res := 0
-	freq := make(map[byte]int)
+	freq := make(map[rune]int)
 	start := 0
-	bytes := []byte(s)
-	for i := 0; i < len(bytes); {
-		if freq[bytes[i]] == 0 {
-			freq[bytes[i]]++
+	chars := []rune(s)
+	for i := 0; i < len(chars); {
+		if freq[chars[i]] == 0 {
+			freq[chars[i]]++
 			res = max(res, i-start+1)
 			i++
 		} else {
-			freq[bytes[start]]--
+			freq[chars[start]]--
 			start++
 		}
 	}
@@ -53,5 +53,7 @@ func main() {
 	fmt.Println(lengthOfLongestSubstring("abcabccc"))
 	fmt.Println(lengthOfLongestSubstring("bbbbbbbb"))
 	fmt.Println(lengthOfLongestSubstring("pppwwwkkkpwk"))
+	fmt.Println(lengthOfLongestSubstring("一二三三二一"))
 }
+
 // Runtime: 20 ms, faster than 33.99% of Go online submissions for Longest Substring Without Repeating Characters.
