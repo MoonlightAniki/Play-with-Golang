@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math/cmplx"
+	"math"
+)
 
 //var aa = 3
 //var bb = false
@@ -39,6 +43,22 @@ func variableShorter() {
 	fmt.Println(a, b, s)
 }
 
+// 验证欧拉公式
+// pow(e, i * PI) + 1 = 0
+func euler() {
+	fmt.Printf("%.3f\n", cmplx.Exp(1i*math.Pi)+1)
+}
+
+// 类型转换是强制的
+func triangle() {
+	var a int = 3
+	var b int = 4
+	var c int
+	c = int(math.Sqrt(float64(a*a + b*b)))
+	// c = math.Sqrt(a*a + b*b) 是错误的，int类型不能自动转成float64类型，float64类型也不能自动转成int类型，必须强制类型转换
+	fmt.Println(c)
+}
+
 func main() {
 	fmt.Println("Hello World");
 	variableZeroValue()
@@ -47,4 +67,8 @@ func main() {
 	variableShorter()
 
 	fmt.Println(aa, bb, ss)
+
+	euler()
+
+	triangle()
 }
