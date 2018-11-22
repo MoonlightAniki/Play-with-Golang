@@ -50,6 +50,8 @@ func euler() {
 }
 
 // 类型转换是强制的
+
+// 没有char类型，但是有rune类型
 func triangle() {
 	var a int = 3
 	var b int = 4
@@ -57,6 +59,65 @@ func triangle() {
 	c = int(math.Sqrt(float64(a*a + b*b)))
 	// c = math.Sqrt(a*a + b*b) 是错误的，int类型不能自动转成float64类型，float64类型也不能自动转成int类型，必须强制类型转换
 	fmt.Println(c)
+}
+
+// 常量的定义
+// const数值可作为各种类型使用
+func consts() {
+	const filename string = "abc.txt"
+	// 如果声明了常量的类型，常量的类型就确定了，转成其他类型需要强制类型转换
+	//const a, b int = 3, 4
+	// 如果未声明常量类型，常量类型就不确定，可以自动类型转换
+	const a, b = 3, 4
+
+	// 常量也可以定义在一个组内
+	//const (
+	//	filename string = "abc.txt"
+	//	a, b            = 3, 4
+	//)
+
+	var c int
+	c = int(math.Sqrt(a*a + b*b))
+	fmt.Println(filename, c)
+
+}
+
+// 使用常量定义枚举类型
+func enums() {
+	//const (
+	//	cpp    = 0
+	//	java   = 1
+	//	python = 2
+	//	golang = 3
+	//)
+
+	//const (
+	//	cpp = iota//表示从0自增
+	//	java
+	//	python
+	//	golang
+	//)
+
+	const (
+		cpp        = iota
+		_           // 不需要的可用"_"跳过
+		python
+		golang
+		javascript
+	)
+
+	fmt.Println(cpp, javascript, python, golang)
+
+	// iota还可以参与运算
+	const (
+		b  = 1 << (10 * iota)
+		kb
+		mb
+		gb
+		tb
+		pb
+	)
+	fmt.Println(b, kb, mb, gb, tb, pb)
 }
 
 func main() {
@@ -71,4 +132,8 @@ func main() {
 	euler()
 
 	triangle()
+
+	consts()
+
+	enums()
 }
