@@ -48,7 +48,7 @@ func main() {
 	}
 
 	fmt.Println(
-		grade(-1),//panic会中断程序的执行
+		grade(-1), //panic会中断程序的执行
 		grade(59),
 		grade(60),
 		grade(80),

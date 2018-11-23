@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"HelloGo/queue"
+	"dev/Play-with-Go/HelloGo/queue"
 )
 
 func main() {
