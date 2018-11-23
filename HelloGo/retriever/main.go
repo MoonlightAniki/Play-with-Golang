@@ -7,12 +7,39 @@ import (
 	"time"
 )
 
+const url = "http://www.imooc.com"
+
 type Retriever interface {
 	Get(url string) string
 }
 
 func download(r Retriever) string {
-	return r.Get("http://www.imooc.com")
+	return r.Get(url)
+}
+
+type Poster interface {
+	Post(url string, form map[string]string) string
+}
+
+func post(poster Poster) string {
+	return poster.Post(url,
+		map[string]string{
+			"name":   "ccmouse",
+			"course": "golang",
+		})
+}
+
+type RetrieverPoster interface {
+	Retriever
+	Poster
+}
+
+func session(s RetrieverPoster) string {
+	s.Post(url,
+		map[string]string{
+			"contents": "another faked imooc.com",
+		})
+	return s.Get(url)
 }
 
 func main() {
@@ -20,7 +47,8 @@ func main() {
 	//fmt.Println(download(r))
 
 	var r Retriever
-	r = mock.Retriever{"this is a fake imooc.com"}
+	retriever := mock.Retriever{"this is a fake imooc.com"}
+	r = &retriever
 	inspect(r)
 
 	r = &real.Retriever{
@@ -39,18 +67,20 @@ func main() {
 	//mockRetriever := r.(mock.Retriever)
 	//fmt.Println(mockRetriever.Contents)
 
-	if mockRetriever, ok := r.(mock.Retriever); ok {
+	if mockRetriever, ok := r.(*mock.Retriever); ok {
 		fmt.Println(mockRetriever.Contents)
 	} else {
 		fmt.Println("Not a mock Retriever")
 	}
+
+	fmt.Println(session(&retriever))
 
 }
 
 func inspect(r Retriever) {
 	fmt.Printf("%T %v\n", r, r)
 	switch v := r.(type) {
-	case mock.Retriever:
+	case *mock.Retriever:
 		fmt.Println("Contents:", v.Contents)
 	case *real.Retriever:
 		fmt.Printf("UserAgent:%s, TimeOut:%d\n", v.UserAgent, v.TimeOut)
