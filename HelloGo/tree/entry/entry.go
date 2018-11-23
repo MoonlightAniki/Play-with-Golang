@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"HelloGo/tree"
+	"golang.org/x/tools/container/intsets"
 )
 
 // 一个目录中只能有一个包
@@ -12,7 +13,6 @@ func main() {
 	var root tree.Node
 	//fmt.Println(root.Val, root.Left, root.Right)
 	fmt.Println(root)
-
 
 	//     3
 	//   /   \
@@ -54,6 +54,19 @@ func main() {
 	fmt.Println()
 	mRoot := myTreeNode{&root}
 	mRoot.postOrderTraverse()
+
+	fmt.Println()
+	testSparse()
+
+}
+
+func testSparse() {
+	s := intsets.Sparse{}
+	s.Insert(1)
+	s.Insert(1000)
+	s.Insert(1000000)
+	fmt.Println(s.Has(1000))
+	fmt.Println(s.Has(100000))
 
 }
 

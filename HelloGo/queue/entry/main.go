@@ -1,8 +1,8 @@
 package main
 
 import (
-	"HelloGo/queue"
 	"fmt"
+	"HelloGo/queue"
 )
 
 func main() {
