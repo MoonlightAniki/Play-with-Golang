@@ -51,6 +51,12 @@ func main() {
 
 	root.InOrderTraverse()
 
+	nodeCount := 0
+	root.InOrderTraverseFunc(func(node *tree.Node) {
+		nodeCount++
+	})
+	fmt.Println("nodeCount:", nodeCount)
+
 	fmt.Println()
 	mRoot := myTreeNode{&root}
 	mRoot.postOrderTraverse()

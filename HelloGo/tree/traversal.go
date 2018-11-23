@@ -6,12 +6,10 @@ import "fmt"
 
 // 二叉树的中序遍历
 func (node *Node) InOrderTraverse() {
-	if node == nil {
-		return
-	}
-	node.Left.InOrderTraverse()
-	fmt.Print(node.Val, " ")
-	node.Right.InOrderTraverse()
+	node.InOrderTraverseFunc(func(n *Node) {
+		n.Print()
+	})
+	fmt.Println()
 }
 
 // 前序遍历
@@ -32,4 +30,14 @@ func (node *Node) PostOrderTraverse() {
 	node.Left.PostOrderTraverse()
 	node.Right.PostOrderTraverse()
 	fmt.Print(node.Val, " ")
+}
+
+// 函数式编程实现中序遍历
+func (node *Node) InOrderTraverseFunc(f func(*Node)) {
+	if node == nil {
+		return
+	}
+	node.Left.InOrderTraverseFunc(f)
+	f(node)
+	node.Right.InOrderTraverseFunc(f)
 }
