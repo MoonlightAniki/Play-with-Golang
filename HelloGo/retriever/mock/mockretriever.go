@@ -1,7 +1,14 @@
 package mock
 
+import "fmt"
+
 type Retriever struct {
 	Contents string
+}
+
+// 实现Stringer接口，类似Java中toString()方法
+func (r *Retriever) String() string {
+	return fmt.Sprintf("Retriever: {Contents:%s}", r.Contents)
 }
 
 func (r *Retriever) Post(url string, form map[string]string) string {

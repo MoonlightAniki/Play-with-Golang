@@ -5,6 +5,8 @@ import (
 	"strconv"
 	"os"
 	"bufio"
+	"strings"
+	"io"
 )
 
 func sum(n int) int {
@@ -52,6 +54,13 @@ func forever() {
 	}
 }
 
+func printFileContents(reader io.Reader) {
+	scanner := bufio.NewScanner(reader)
+	for scanner.Scan() {
+		fmt.Println(scanner.Text())
+	}
+}
+
 func main() {
 	fmt.Println(sum(100))
 	fmt.Println(
@@ -62,7 +71,16 @@ func main() {
 		convertToBinaryString(0),
 	)
 
-	printFile("abc.txt")
+	printFile("basic/abc.txt")
 
-	forever()
+	s := `hello
+	world
+	kkkk
+	dddd
+
+	p`
+
+	printFileContents(strings.NewReader(s))
+
+	//forever()
 }
